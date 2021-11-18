@@ -5,7 +5,7 @@ Cara instalasi sebagai berikut:
 - Clone repository ini
 
 ```
-https://github.com/roufurrohim/hirejob-backend.git
+https://github.com/farizian/zwalletBE
 ```
 
 - Instalasi depedensi :
@@ -21,8 +21,7 @@ https://github.com/roufurrohim/hirejob-backend.git
     "mysql2": "^2.3.0",
     "nodemailer": "^6.6.5",
     "nodemon": "^2.0.13",
-    "sequelize": "^6.7.0",
-    "socket.io": "^4.2.0"
+    "sequelize": "^6.7.0"
 ```
 
 ## API DOCUMENTATION
@@ -38,21 +37,14 @@ https://github.com/roufurrohim/hirejob-backend.git
 | 502         | `Invalid response from another request` |
 
 
-
-
 **.env example**
 ```
 DB_USERNAME = 
 DB_PASSWORD =
-JWT_SECRET = projectteam2
+JWT_SECRET = 
 PASS_NODE =  
 EMAIL_NODE = 
 ```
-
-
-**Relasi Table Database**
-
-[click me](https://drive.google.com/file/d/1iHdZoWObXOkF5tCoL9NOEh8hq5qKkT6K/view)
 
 
 **Sample Database**
