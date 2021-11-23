@@ -2,7 +2,7 @@ const transactionModels = require("../models/transactionModel")
 const usersModels = require("../models/usersModel");
 const { Sequelize } = require("sequelize")
 const bcrypt = require("bcrypt");
-const { success, failed, successLogin } = require("../helpers/response");
+const { success, failed } = require("../helpers/response");
 const Op = Sequelize.Op;
 
 const transaction = {
