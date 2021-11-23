@@ -15,6 +15,7 @@ const {
     checkpin,
     login,
     forgetPassword,
+    regisPin,
 } = require('../controller/users.controller');
 
 const usersRouter = express.Router();
@@ -27,7 +28,8 @@ usersRouter
 .post('/login', login)
 .post('/checkpin', authen, checkpin)
 .put('/userpw', authen, updatePw)
-.put('/userpin/:id', updatePin)
+.put('/regispin/:id', regisPin)
+.put('/updatepin', authen, updatePin)
 .put('/user', authen, upload, updateUser)
 .delete('/user/:id', authen, deleteUser)
 .post('/forget-pass', forgetPassword)

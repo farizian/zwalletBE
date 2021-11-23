@@ -22,6 +22,7 @@ const transaction = {
           balance: saldo + body.amount,
           notes: "Top Up",
           description: body.description,
+          iduser: id,
           sender: id,
           receiver: id
         })
@@ -64,6 +65,16 @@ const transaction = {
             balance: saldo - body.amount,
             notes: "Transfer",
             description: body.description,
+            iduser: id,
+            sender: id,
+            receiver: idReceiver,
+          })
+          const transactionReceiver = await transactionModels.create({
+            amount : body.amount,
+            balance: saldoReceiver + body.amount,
+            notes: "Accept",
+            description: `Accept From ${sender[0].firstname} ${sender[0].lastname}`,
+            iduser: idReceiver,
             sender: id,
             receiver: idReceiver,
           })
@@ -90,8 +101,12 @@ const transaction = {
         const id = req.userId;
         const result = await transactionModels.findAll({
           where: {
+            iduser: id,
             receiver: id
-          }
+          },
+          order: [
+            ['created_at', 'ASC']
+          ],
         });
         success(res, result, "get Income Success")
       } catch (error) {
@@ -103,9 +118,13 @@ const transaction = {
         const id = req.userId;
         const result = await transactionModels.findAll({
           where: {
+            iduser: id,
             sender: id,
             notes: "Transfer"
-          }
+          },
+          order: [
+            ['created_at', 'ASC']
+          ],
         });
         success(res, result, "get Spending Success ");
       } catch (error) {
@@ -130,10 +149,11 @@ const transaction = {
     },
     getAllTransaction: async(req, res) =>{
       try {
-        const id = req.userId;
+        const iduser = req.userId;
         const result = await transactionModels.findAll({
           where: {
-            [Op.or] : [{sender: id}, {receiver: id}]
+            iduser
+            // [Op.or] : [{sender: id}, {receiver: id}]
           },
           include: [
             {model: usersModels, as: 'senderUsers'},

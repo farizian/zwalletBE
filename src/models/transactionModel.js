@@ -5,6 +5,10 @@ const Users = require("./usersmodel")
 const Transaction = db.define(
     "transaction",
     {
+        iduser:{
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         sender:{
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -20,7 +24,7 @@ const Transaction = db.define(
             type: DataTypes.TEXT
         },
         notes: {
-            type: DataTypes.ENUM('Transfer', 'Top Up')
+            type: DataTypes.ENUM('Transfer', 'Top Up', 'Accept')
         },
         balance: {
             type: DataTypes.INTEGER

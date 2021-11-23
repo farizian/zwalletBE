@@ -3,6 +3,7 @@ const bodyparser = require('body-parser')
 const cors = require('cors')
 const http = require('http')
 const {Op} = require("sequelize")
+const {port} = require("./src/helpers/env")
 
 const transrouter = require('./src/route/transrouter');
 const usersRouter = require('./src/route/users.route');
@@ -17,7 +18,7 @@ app.use("/helpers", express.static(__dirname + "/image/helpers"))
 
 
 const server = http.createServer(app)
-const PORT = 8000
+const PORT = port || 8000
 server.listen(PORT, () => {
     console.log(`Service running on Port ${PORT}`);
 });

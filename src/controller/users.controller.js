@@ -195,12 +195,31 @@ const users = {
       failed(res, 500, error);
     }
   },
-  updatePin: async (req, res) => {
+  regisPin: async (req, res) => {
     try {
       const {
-        pin,
+        pin
       } = req.body;
       const id = req.params.id;
+      const hash = bcrypt.hashSync(pin, 10);
+      const result = await usersModels.update(
+        {
+          pin: hash,
+        },
+        {
+          where: {
+            id,
+          },
+        });
+      success(res, result, "Register pin Success");
+    } catch (error) {
+      failed(res, 500, error);
+    }
+  },
+  updatePin: async (req, res) => {
+    try {
+      const { pin } = req.body;
+      const id = req.userId;
       const hash = bcrypt.hashSync(pin, 10);
       const result = await usersModels.update(
         {
